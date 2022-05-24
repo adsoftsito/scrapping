@@ -24,13 +24,29 @@ app.get("/scrapping", function (req, res) {
 
     await page.waitForSelector(elementToClick);
   
-    await Promise.all([
-      page.click(elementToClick),
-      page.waitForNavigation({ waitUntil: 'networkidle2' }),
-    ])
+   //  await Promise.all([
 
-  }
+      page.click(elementToClick);
+      page.waitForNavigation({ waitUntil: 'networkidle2' });
 
+   // ])
+
+  
+      const result = await page.evaluate(() => {
+	//Acá adentro va lo que queremos que haga
+ 
+let name = document.querySelector("body > main > div > div.col-12.text-center.mb-3 > h1").innerText;
+
+//      let name = document.querySelector("").innerHTML;
+        console.log("name");
+        console.log(name);
+     });
+
+     console.log('championModel ->', result)
+
+    
+
+ }
   scrape()
 
 })
